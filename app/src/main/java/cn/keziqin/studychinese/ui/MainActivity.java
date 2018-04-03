@@ -1,4 +1,4 @@
-package studychinese.keziqin.cn.studychinese;
+package cn.keziqin.studychinese.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

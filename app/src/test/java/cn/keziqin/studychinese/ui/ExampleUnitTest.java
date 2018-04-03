@@ -1,4 +1,4 @@
-package studychinese.keziqin.cn.studychinese;
+package cn.keziqin.studychinese.ui;
 
 import org.junit.Test;
 

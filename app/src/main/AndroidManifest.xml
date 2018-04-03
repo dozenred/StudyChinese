@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="studychinese.keziqin.cn.studychinese">
+    package="cn.keziqin.studychinese.ui">
 
     <application
+        android:name="cn.keziqin.studychinese.appconfig.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

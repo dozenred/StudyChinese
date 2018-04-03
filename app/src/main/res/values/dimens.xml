@@ -1,0 +1,85 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <dimen name="divide_line">0.5dp</dimen>
+    <dimen name="divide_margin">8dp</dimen>
+
+    <dimen name="ad_banner_height">128dp</dimen>
+
+    <dimen name="trolley_footer_height">56dp</dimen>
+
+    <dimen name="favorite_goods_footer_height">56dp</dimen>
+
+    <!-- RoundImageView 外边框距离图片的距离-->
+    <dimen name="default_out_border_padding">8dp</dimen>
+
+    <dimen name="shape_radius">4dp</dimen>
+
+    <dimen name="banner_indicator_dot_size">4dp</dimen>
+    <!--滑动关闭时左侧阴影的宽度-->
+    <dimen name="shadow_width">4dp</dimen>
+
+    <!-- 头像大小-->
+    <dimen name="portrait_size">100dp</dimen>
+    <!-- 商品列表中的图片大小-->
+    <dimen name="desired_goods_image_size">160dp</dimen>
+    <dimen name="category_image_size">120dp</dimen>
+
+    <!-- body content -->
+    <dimen name="element_spacing_normal">8dp</dimen>
+    <dimen name="content_padding_normal">16dp</dimen>
+    <dimen name="text_size_tiny">9sp</dimen>
+    <dimen name="text_size_xxsmall">10sp</dimen>
+    <dimen name="text_size_xsmall">11sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_small_plus">13sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_medium_plus">15sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_xxlarge">24sp</dimen>
+
+    <dimen name="keyline_1">16dp</dimen>
+    <dimen name="keyline_1_minus_8dp">8dp</dimen>
+    <dimen name="keyline_min_double_1">32dp</dimen>
+    <dimen name="keyline_2">72dp</dimen>
+    <dimen name="keyline_2_minus_16dp">56dp</dimen>
+    <dimen name="keyline_2_session_detail">@dimen/keyline_2</dimen>
+    <dimen name="keyline_minus_4dp">4dp</dimen>
+
+
+    <dimen name="fab_elevation">8dp</dimen>
+    <dimen name="fab_press_translation_z">6dp</dimen>
+    <dimen name="headerbar_elevation">4dp</dimen>
+    <dimen name="session_detail_max_header_elevation">@dimen/headerbar_elevation</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+
+    <dimen name="card_corner_radius">2dp</dimen>
+
+    <dimen name="tag_color_dot_size">12dp</dimen>
+
+    <dimen name="toolbar_padding_top">0dp</dimen>
+
+    <dimen name="default_qr_code_size">150dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="comment_edit_height">120dp</dimen>
+
+    <dimen name="trolley_empty_tip_height">300dp</dimen>
+
+    <dimen name="min_album_pic_size">120dp</dimen>
+    <dimen name="max_album_pic_size">160dp</dimen>
+    <dimen name="comment_album_pic_size">144dp</dimen>
+
+    <dimen name="goods_detail_image_height">350dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+
+    <dimen name="horizon_progress_bar_height">3dp</dimen>
+
+
+</resources>

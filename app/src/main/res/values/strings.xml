@@ -1,3 +1,135 @@
 <resources>
-    <string name="app_name">Study Chinese</string>
+    <string name="app_name">物流项目</string>
+
+    <!--Common-->
+    <string name="internet_error">网络连接不可用,请稍后重试</string>
+    <string name="exit_confirm">再按一次退出程序</string>
+    <string name="get_data_failed">获取数据失败</string>
+    <string name="permisson_apply_failed">请求权限失败</string>
+    <string name="process_failed">处理失败，请检查您的网络连接</string>
+    <string name="ensure">确认</string>
+    <string name="submit">确认</string>
+    <string name="collect_success">收款成功</string>
+    <string name="collect_fail">收款失败</string>
+    <string name="cancel">取消</string>
+    <string name="finish">完成</string>
+    <string name="other">其他原因</string>
+    <string name="goodsReason">货物原因</string>
+    <string name="save">保存</string>
+    <string name="querying">正在查询</string>
+    <string name="saving">正在保存</string>
+    <string name="processing">正在处理</string>
+    <string name="deleting">正在删除</string>
+    <string name="nextStep">下一步</string>
+    <string name="more">更多</string>
+    <string name="less">收起</string>
+    <string name="tip">提示</string>
+    <string name="error">出错啦~</string>
+    <string name="reload">重新加载...</string>
+    <string name="less_sensor">启动失败，您的设备缺少必要的传感器。</string>
+    <string name="exit">退出</string>
+
+    <!--启动权限 Start-->
+    <string name="permission_tips">缺少必要的权限将导致应用不可用</string>
+    <!--启动权限 End-->
+
+    <!--登录&注册 Start-->
+    <string name="login_username_hint">请输入用户名</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="register_tip">还没有账号？赶快注册吧~</string>
+    <string name="register">注册</string>
+    <string name="username">用户名</string>
+    <string name="register_repassword_tip">确认密码</string>
+    <string name="register_email_tip">邮箱</string>
+    <string name="password">密码</string>
+    <string name="login_tip">已有账号？登录</string>
+    <string name="username_not_input_tip">账号不能为空</string>
+    <string name="password_not_input_tip">密码不能为空</string>
+    <string name="email_not_input_tip">邮箱地址不能为空</string>
+    <string name="email_not_correct">邮箱地址不正确</string>
+    <string name="repassword_not_same">两次输入的密码不一致</string>
+    <!--登录&注册 End-->
+
+    <!-- 接货单详细信息 Start-->
+    <string name="loading_success">装载成功</string>
+    <string name="loading_failure">装载失败</string>
+    <string name="storing_success">入库成功</string>
+    <!-- 接货单详细信息 End-->
+
+    <!-- 送货单详细信息 Start-->
+    <string name="receive_success">客户已收货</string>
+    <string name="receive_failure">客户收货失败</string>
+    <!-- 送货单详细信息 End-->
+
+    <!-- 送货单自提金额详细信息 Start-->
+    <string name="self_mention_title">自提费用明细</string>
+    <string name="freight">总运费到付款:</string>
+    <string name="transactionCosts">异动支出:</string>
+    <string name="goodsPayment">代收货款:</string>
+    <string name="totalMoney">应收:</string>
+    <!-- 送货单自提金额详细信息 End-->
+
+    <!-- 业务员三方订单详细信息 Start-->
+    <string name="update_order">提交三方订单</string>
+    <string name="update_order_info">确定提交修改后的三方订单吗？</string>
+    <!-- 业务员三方订单详细信息 End-->
+
+
+    <!--主页 Start-->
+    <string name="main_menu_title">更多</string>
+    <string name="main_menu_capture">采样</string>
+    <string name="main_menu_user_center">个人中心</string>
+    <string name="my_location">我的位置</string>
+    <!--主页 End-->
+    <!-- 选择待采样楼层 Start-->
+    <string name="choose_building_title">选择待采建筑</string>
+    <string name="floor_data_empty">当前建筑没有待采的楼层</string>
+    <string name="choose_floor_title">选择要采的楼层</string>
+    <string name="no_map">该地图不存在</string>
+    <string name="choose_country_title">选择国家</string>
+    <string name="choose_province_title">选择省份</string>
+    <string name="choose_city_title">选择城市</string>
+    <string name="choose_site_title">选择站点</string>
+
+    <!-- 选择待采样楼层 End-->
+    <!-- 采样 Start-->
+    <string name="sample_routetlist">已采集路线</string>
+    <string name="input_empty_tip">请输入内容</string>
+    <string name="msg_recovery_routes">是否恢复历史路径？</string>
+    <string name="sample_start">开始采样</string>
+    <string name="routelist_clearall">清除数据</string>
+    <string name="capture_result_title">采样结果</string>
+    <string name="capture_title">地图采样</string>
+    <string name="route_remove_confirm_title">删除路径</string>
+    <string name="route_remove_confirm_message">您确定要删除%s吗？</string>
+    <string name="start_draw_line">绘制</string>
+    <string name="route_line_back">撤销</string>
+    <string name="route_point_add_message">长按地图添加路径点</string>
+    <string name="route_point_cant_back">路径为空，撤销失败</string>
+    <string name="no_file_upload">采样文件为空，上传失败</string>
+    <string name="empty_saved_routes">加载失败，路径信息为空</string>
+    <string name="doing_capture_tip">正在采样...</string>
+    <string name="route_upload">上传</string>
+    <string name="cannot_delete_route">当前无法删除路径</string>
+    <string name="no_route_tip">您还没有添加路径</string>
+    <string name="doing_upload">正在上传...</string>
+    <string name="doing_zip">生成采样文件...</string>
+    <string name="input_route_width_tip">请输入有效路径宽度/米</string>
+    <string name="upload_finished">上传已完成</string>
+    <string name="sample_cancel_confirm">您确定要取消采样吗？</string>
+    <string name="upload_confirm">立即上传？</string>
+    <!-- 采样 End-->
+    <!-- 个人中心&修改密码 Start-->
+    <string name="personal_center">个人中心</string>
+    <string name="usermsg">用户资料 : </string>
+    <string name="logout">注销登录</string>
+    <string name="alter_password">修改密码</string>
+    <string name="alter_password_newpassword_hint">请输入新密码</string>
+    <string name="alter_password_renewpassword_hint">请再次输入新密码</string>
+    <string name="newpassword_not_input_tip">新密码不能为空</string>
+    <string name="renewpassword_not_input_tip">新密码确认不能为空</string>
+    <string name="useraccount">账户</string>
+    <string name="token_invalid">登录过期，请重新登录</string>
+    <!-- 个人中心&修改密码 End-->
 </resources>
