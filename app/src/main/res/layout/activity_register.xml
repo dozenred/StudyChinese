@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        android:background="@color/ghostwhite"
+        tools:context="cn.keziqin.studychinese.ui.activity.RegisterActivity">
+        <include
+            android:id="@+id/register_toolbar"
+            layout="@layout/include_toolbar" />
+
+        <include layout="@layout/include_toolbar_divider" />
+
+        <cn.keziqin.studychinese.view.ClearEditText
+            android:id="@+id/edt_reg_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/keyline_1"
+            android:layout_marginRight="@dimen/keyline_1"
+            android:layout_marginTop="@dimen/keyline_1"
+            android:background="@drawable/background_round_edittext"
+            android:hint="请输入账号"
+            android:padding="@dimen/keyline_1"
+            android:textSize="@dimen/text_size_medium" />
+        
+        <cn.keziqin.studychinese.view.ClearEditText
+            android:id="@+id/edt_reg_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/keyline_1"
+            android:layout_marginRight="@dimen/keyline_1"
+            android:layout_marginTop="@dimen/keyline_1"
+            android:background="@drawable/background_round_edittext"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/keyline_1"
+            android:textSize="@dimen/text_size_medium" />
+        
+        <cn.keziqin.studychinese.view.ClearEditText
+            android:id="@+id/edt_reg_rep_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/keyline_1"
+            android:layout_marginRight="@dimen/keyline_1"
+            android:layout_marginTop="@dimen/keyline_1"
+            android:background="@drawable/background_round_edittext"
+            android:hint="请再次输入密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/keyline_1"
+            android:textSize="@dimen/text_size_medium" />
+        
+        <Button
+            android:id="@+id/btn_reg"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:text="注 册"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button_background"/>
+    </LinearLayout>
+</layout>
+
