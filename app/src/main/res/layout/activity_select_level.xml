@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cn.keziqin.studychinese.ui.activity.SelectLevelActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+        <include
+            android:id="@+id/select_toolbar_toolbar"
+            layout="@layout/include_toolbar" />
+
+        <include layout="@layout/include_toolbar_divider" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="48dp">
+            <RadioGroup
+                android:id="@+id/rg_select"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/rb_level1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="level 1"/>
+                <RadioButton
+                    android:id="@+id/rb_level2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="level 2"/>
+                <RadioButton
+                    android:id="@+id/rb_level3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="level 3"/>
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btn_commit_level"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/rg_select"
+                android:layout_centerHorizontal="true"
+                android:text="commit"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:background="@drawable/selector_button_background"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</layout>
+

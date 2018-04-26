@@ -241,6 +241,7 @@
     <color name="toolbar_divider_color">#F3F4F4</color>
     <color name="content_divider_color">#E8E9E9</color>
     <color name="content_divider_plus_color">#F3F4F4</color>
+    <color name="content_bg_color">#f9f9f9</color>
 
     <!-- 按钮用色-->
     <color name="button_normal">#4B92E6</color>
@@ -252,6 +253,8 @@
 
     <!-- 警告提示颜色-->
     <color name="alert_color">#FF6666</color>
+
+    <color name="select_nav_color">#27c67f</color>
 </resources>
 
 

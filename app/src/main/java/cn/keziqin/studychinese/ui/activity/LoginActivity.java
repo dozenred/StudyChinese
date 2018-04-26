@@ -104,7 +104,8 @@ public class LoginActivity extends BaseActivity {
         SharedPreferencesUtil.setParam(LoginActivity.this, KEY_PASSWORD, mBinding.loginPasswordEdt.getText().toString());
         SharedPreferencesUtil.setParam(LoginActivity.this, KEY_USER_TOKEN, "aaa");
         SharedPreferencesUtil.setParam(LoginActivity.this, KEY_IS_LOGIN, true);
-        jumpToActivity(MainActivity.class);
+        //jumpToActivity(MainActivity.class);
+        jumpToActivity(SelectLevelActivity.class);
         //finish();
 
 
