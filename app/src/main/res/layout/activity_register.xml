@@ -23,7 +23,7 @@
             android:layout_marginRight="@dimen/keyline_1"
             android:layout_marginTop="@dimen/keyline_1"
             android:background="@drawable/background_round_edittext"
-            android:hint="请输入账号"
+            android:hint="please enter your account"
             android:padding="@dimen/keyline_1"
             android:textSize="@dimen/text_size_medium" />
         
@@ -35,7 +35,7 @@
             android:layout_marginRight="@dimen/keyline_1"
             android:layout_marginTop="@dimen/keyline_1"
             android:background="@drawable/background_round_edittext"
-            android:hint="请输入密码"
+            android:hint="please enter your password"
             android:inputType="textPassword"
             android:padding="@dimen/keyline_1"
             android:textSize="@dimen/text_size_medium" />
@@ -48,7 +48,7 @@
             android:layout_marginRight="@dimen/keyline_1"
             android:layout_marginTop="@dimen/keyline_1"
             android:background="@drawable/background_round_edittext"
-            android:hint="请再次输入密码"
+            android:hint="please enter your password again"
             android:inputType="textPassword"
             android:padding="@dimen/keyline_1"
             android:textSize="@dimen/text_size_medium" />
@@ -59,7 +59,8 @@
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
             android:layout_gravity="center_horizontal"
-            android:text="注 册"
+            android:text="Register"
+            android:textAllCaps="false"
             android:textSize="16sp"
             android:textColor="@color/white"
             android:background="@drawable/selector_button_background"/>

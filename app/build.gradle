@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
     dataBinding {
         enabled = true
     }
@@ -44,4 +49,5 @@ dependencies {
     api 'com.lzy.net:okgo:3.0.4'
     api 'com.google.code.gson:gson:2.8.2'
     api 'com.zyao89:zloading:1.0.8'
+    api 'org.greenrobot:eventbus:3.1.1'
 }

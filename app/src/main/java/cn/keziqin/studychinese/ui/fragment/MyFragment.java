@@ -1,5 +1,6 @@
 package cn.keziqin.studychinese.ui.fragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,10 +10,15 @@ import android.view.ViewGroup;
 
 import cn.keziqin.studychinese.ui.BaseFragment;
 import cn.keziqin.studychinese.ui.R;
+import cn.keziqin.studychinese.ui.activity.LoginActivity;
+import cn.keziqin.studychinese.ui.activity.SelectLevelActivity;
 import cn.keziqin.studychinese.ui.databinding.FragmentMyBinding;
+import cn.keziqin.studychinese.utils.SharedPreferencesUtil;
+import cn.keziqin.studychinese.utils.ToastUtils;
 
 public class MyFragment extends BaseFragment {
     private FragmentMyBinding mBinding;
+    public static final String KEY_IS_LOGIN = "isLogin";
 
     @Nullable
     @Override
@@ -28,5 +34,21 @@ public class MyFragment extends BaseFragment {
     }
 
     private void initView() {
+        mBinding.btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToastUtils.showToast(view.getContext(), "LogOut!");
+                SharedPreferencesUtil.setParam(view.getContext(), KEY_IS_LOGIN, false);
+                Intent intent = new Intent(view.getContext(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        mBinding.btnMySelectLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ToastUtils.showToast(view.getContext(), "LogOut!");
+                jumpToActivity(SelectLevelActivity.class);
+            }
+        });
     }
 }

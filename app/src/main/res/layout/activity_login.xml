@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium_plus"
                 android:layout_marginLeft="4dp"
-                android:text="记住密码"/>
+                android:text="Remember your password"/>
 
         </LinearLayout>
 
@@ -75,6 +75,7 @@
             android:layout_margin="@dimen/keyline_1"
             android:background="@drawable/selector_button_background"
             android:text="@string/login"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium" />
 
@@ -85,7 +86,7 @@
             android:layout_marginBottom="16dp"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/colorPrimary1"
-            android:text="还没有账号那就注册一个吧~"/>
+            android:text="@string/register_tip"/>
 
 
     </LinearLayout>

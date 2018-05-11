@@ -34,7 +34,7 @@ public class RegisterActivity extends BaseActivity {
                 } else if (mBinding.edtRegRepPassword.getText().toString().isEmpty()) {
                     ToastUtils.showToast(RegisterActivity.this, R.string.password_not_input_tip);
                 } else if (!mBinding.edtRegPassword.getText().toString().equals(mBinding.edtRegRepPassword.getText().toString())) {
-                    ToastUtils.showToast(RegisterActivity.this, "两次输入的密码不一致");
+                    ToastUtils.showToast(RegisterActivity.this, "Entered passwords differ, please reenter it");
                 } else {
                     execRegister();
                 }
@@ -52,7 +52,7 @@ public class RegisterActivity extends BaseActivity {
     protected void initToolbar() {
         toolbar = mBinding.registerToolbar.toolbar;
         toolbar.setTitle("");
-        mBinding.registerToolbar.toolbarText.setText("注册");
+        mBinding.registerToolbar.toolbarText.setText("Register");
         super.initToolbar();
     }
 }

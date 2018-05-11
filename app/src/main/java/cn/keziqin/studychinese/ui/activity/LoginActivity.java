@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivity {
     protected void initToolbar() {
         toolbar = mBinding.loginToolbar.toolbar;
         toolbar.setTitle("");
-        mBinding.loginToolbar.toolbarText.setText("登录");
+        mBinding.loginToolbar.toolbarText.setText("Login");
         toolbar.setNavigationIcon(null);
         super.initToolbar();
     }
@@ -106,7 +106,7 @@ public class LoginActivity extends BaseActivity {
         SharedPreferencesUtil.setParam(LoginActivity.this, KEY_IS_LOGIN, true);
         //jumpToActivity(MainActivity.class);
         jumpToActivity(SelectLevelActivity.class);
-        //finish();
+        finish();
 
 
     }
@@ -119,7 +119,7 @@ public class LoginActivity extends BaseActivity {
                 this.finish();
 
             } else {
-                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "One more exit", Toast.LENGTH_SHORT).show();
                 mIsExit = true;
                 new Handler().postDelayed(new Runnable() {
                     @Override

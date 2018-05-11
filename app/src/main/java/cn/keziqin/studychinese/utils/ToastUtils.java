@@ -39,7 +39,7 @@ public class ToastUtils {
         if (mToast == null) {// 只有mToast==null时才重新创建，否则只需更改提示文字
             mToast = Toast.makeText(context, message, Toast.LENGTH_LONG);
         }
-        mHandler.postDelayed(r, 2000);// 延迟1秒隐藏toast
+        mHandler.postDelayed(r, 1000);// 延迟1秒隐藏toast
         mToast.show();
     }
 

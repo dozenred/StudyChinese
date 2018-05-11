@@ -34,21 +34,21 @@
     <!--启动权限 End-->
 
     <!--登录&注册 Start-->
-    <string name="login_username_hint">请输入用户名</string>
-    <string name="login_password_hint">请输入密码</string>
-    <string name="login">登录</string>
-    <string name="register_tip">还没有账号？赶快注册吧~</string>
+    <string name="login_username_hint">please enter your account</string>
+    <string name="login_password_hint">please enter your password</string>
+    <string name="login">Login</string>
+    <string name="register_tip">No account number? Hurry up~</string>
     <string name="register">注册</string>
     <string name="username">用户名</string>
     <string name="register_repassword_tip">确认密码</string>
     <string name="register_email_tip">邮箱</string>
     <string name="password">密码</string>
     <string name="login_tip">已有账号？登录</string>
-    <string name="username_not_input_tip">账号不能为空</string>
-    <string name="password_not_input_tip">密码不能为空</string>
+    <string name="username_not_input_tip">Account cannot be empty</string>
+    <string name="password_not_input_tip">Password cannot be empty</string>
     <string name="email_not_input_tip">邮箱地址不能为空</string>
     <string name="email_not_correct">邮箱地址不正确</string>
-    <string name="repassword_not_same">两次输入的密码不一致</string>
+    <string name="repassword_not_same">Entered passwords differ</string>
     <!--登录&注册 End-->
 
     <!-- 接货单详细信息 Start-->

@@ -9,6 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import org.greenrobot.eventbus.EventBus;
+
+import cn.keziqin.studychinese.appconfig.MyApplication;
+import cn.keziqin.studychinese.beans.CourseMessageEvent;
+import cn.keziqin.studychinese.beans.ExamMessageEvent;
 import cn.keziqin.studychinese.ui.databinding.ActivityMainBinding;
 import cn.keziqin.studychinese.ui.fragment.CourseFragment;
 import cn.keziqin.studychinese.ui.fragment.ExamFragment;
@@ -29,7 +34,7 @@ public class MainActivity extends BaseActivity {
     protected void initToolbar() {
         toolbar = mBinding.mainToolbar.toolbar;
         toolbar.setTitle("");
-        mBinding.mainToolbar.toolbarText.setText("教程");
+        mBinding.mainToolbar.toolbarText.setText("Course");
         toolbar.setNavigationIcon(null);
         super.initToolbar();
     }
@@ -39,7 +44,7 @@ public class MainActivity extends BaseActivity {
         initToolbar();
         initMainFragment();
         changeNavBar();
-
+        itemChangeListener(0);
     }
 
     private void initMainFragment() {
@@ -47,7 +52,40 @@ public class MainActivity extends BaseActivity {
         selectExamBg(false);
         selectMyBg(false);
         replaceFragment(0);
-        mBinding.mainToolbar.toolbarText.setText("教程");
+        mBinding.mainToolbar.toolbarText.setText("Course");
+        mBinding.mainToolbar.toolbarRightTitle.setText("Next");
+        mBinding.mainToolbar.toolbarLeftTitle.setText("Previous");
+    }
+
+    private void itemChangeListener(final int index) {
+        mBinding.mainToolbar.toolbarRightTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (index) {
+                    case 0:
+                        EventBus.getDefault().post(new CourseMessageEvent("学习内容下一个"));
+                        break;
+                    case 1:
+                        EventBus.getDefault().post(new ExamMessageEvent("考试内容下一个"));
+                        break;
+                }
+
+            }
+        });
+        mBinding.mainToolbar.toolbarLeftTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (index) {
+                    case 0:
+                        EventBus.getDefault().post(new CourseMessageEvent("学习内容上一个"));
+                        break;
+                    case 1:
+                        EventBus.getDefault().post(new ExamMessageEvent("考试内容上一个"));
+                        break;
+                }
+
+            }
+        });
     }
 
     private void changeNavBar() {
@@ -58,7 +96,10 @@ public class MainActivity extends BaseActivity {
                 selectExamBg(false);
                 selectMyBg(false);
                 replaceFragment(0);
-                mBinding.mainToolbar.toolbarText.setText("教程");
+                mBinding.mainToolbar.toolbarText.setText("Course");
+                mBinding.mainToolbar.toolbarRightTitle.setText("Next");
+                mBinding.mainToolbar.toolbarLeftTitle.setText("Previous");
+                itemChangeListener(0);
             }
         });
 
@@ -69,7 +110,10 @@ public class MainActivity extends BaseActivity {
                 selectExamBg(true);
                 selectMyBg(false);
                 replaceFragment(1);
-                mBinding.mainToolbar.toolbarText.setText("考试");
+                mBinding.mainToolbar.toolbarText.setText("Exam");
+                mBinding.mainToolbar.toolbarRightTitle.setText("Next");
+                mBinding.mainToolbar.toolbarLeftTitle.setText("Previous");
+                itemChangeListener(1);
             }
         });
 
@@ -80,7 +124,9 @@ public class MainActivity extends BaseActivity {
                 selectExamBg(false);
                 selectMyBg(true);
                 replaceFragment(2);
-                mBinding.mainToolbar.toolbarText.setText("我的");
+                mBinding.mainToolbar.toolbarText.setText("My");
+                mBinding.mainToolbar.toolbarRightTitle.setText("");
+                mBinding.mainToolbar.toolbarLeftTitle.setText("");
             }
         });
 
@@ -94,18 +140,21 @@ public class MainActivity extends BaseActivity {
                 transaction.replace(R.id.main_fragment, courseFragment);
 //                transaction.addToBackStack(null);
                 transaction.commit();
+                MyApplication.stopSpeaking();
                 break;
             case 1:
                 ExamFragment examFragment = new ExamFragment();
                 transaction.replace(R.id.main_fragment, examFragment);
 //                transaction.addToBackStack(null);
                 transaction.commit();
+                MyApplication.stopSpeaking();
                 break;
             case 2:
                 MyFragment myFragment = new MyFragment();
                 transaction.replace(R.id.main_fragment, myFragment);
 //                transaction.addToBackStack(null);
                 transaction.commit();
+                MyApplication.stopSpeaking();
                 break;
             default:
                 break;

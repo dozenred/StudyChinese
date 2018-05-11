@@ -1,34 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
-            android:id="@+id/layout_first"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_pinyin"
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/course_layout_1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="nǐ"
-                android:textSize="18dp"/>
-            <ImageView
-                android:id="@+id/iv_zi_structure"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/tv_pinyin"
-                android:src="@drawable/ni_structure"/>
-        </RelativeLayout>
+                android:layout_marginTop="0dp">
+                <TextView
+                    android:id="@+id/tv_pinyin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/layout_show_zi"
+                    android:layout_alignRight="@+id/layout_show_zi"
+                    android:gravity="center"
+                    android:text="nǐ"
+                    android:textSize="18dp"/>
+                <RelativeLayout
+                    android:id="@+id/layout_show_zi"
+                    android:layout_below="@id/tv_pinyin"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_zi_structure"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ni_structure"/>
+                    <TextView
+                        android:id="@+id/tv_course_juzi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:text="你好啊"
+                        android:visibility="invisible"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/layout_show_zi"
+                    android:layout_alignTop="@id/layout_show_zi"
+                    android:layout_alignBottom="@id/layout_show_zi"
+                    android:src="@drawable/sound"/>
+                <ImageView
+                    android:id="@+id/iv_gif_bishun"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/layout_show_zi"
+                    android:layout_alignBottom="@id/layout_show_zi"
+                    android:src="@drawable/zhou"/>
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_alignParentBottom="true"
+                    layout="@layout/include_content_divider" />
+            </RelativeLayout>
 
 
-        <ImageView
-            android:id="@+id/iv_gif_bishun"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/course_layout_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+                <TextView
+                    android:id="@+id/tv_word_explanation_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Explanation:"
+                    android:textSize="14dp"/>
+                <TextView
+                    android:id="@+id/tv_word_explanation_content"
+                    android:layout_below="@id/tv_word_explanation_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"/>
+                <include
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_word_explanation_content"
+                    layout="@layout/include_content_divider" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/course_layout_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+                <TextView
+                    android:id="@+id/tv_course_pic_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You can think like this:"
+                    android:textColor="@color/black"/>
+                <ImageView
+                    android:id="@+id/iv_course_picture"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_below="@id/tv_course_pic_title"
+                    android:layout_centerInParent="true"/>
+                <include
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/iv_course_picture"
+                    layout="@layout/include_content_divider" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/course_layout_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+                <TextView
+                    android:id="@+id/course_zixing_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shape evolution:"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:id="@+id/course_zixing_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/course_zixing_title"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/course_zixing_explanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/course_zixing_content"
+                    android:singleLine="false"/>
+
+                <include
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/course_zixing_explanation"
+                    layout="@layout/include_content_divider" />
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/course_layout_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+                <TextView
+                    android:id="@+id/tv_liju_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Example Sentence:"/>
+                <TextView
+                    android:id="@+id/tv_liju_content_cn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_liju_title"/>
+                <TextView
+                    android:id="@+id/tv_liju_content_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_liju_content_cn"/>
+
+                <include
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_liju_content_en"
+                    layout="@layout/include_content_divider" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/course_layout_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp">
+                <TextView
+                    android:id="@+id/tv_course_grammar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Grammar:"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/tv_course_grammar_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_course_grammar_title"
+                    android:lineSpacingMultiplier="1.5"/>
+                <include
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_course_grammar_content"
+                    layout="@layout/include_content_divider" />
+            </RelativeLayout>
+
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_gif_bishun"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerInParent="true"/>-->
+        </LinearLayout>
+    </ScrollView>
+
 
 
 </layout>
