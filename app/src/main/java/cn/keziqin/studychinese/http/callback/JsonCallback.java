@@ -36,11 +36,11 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
         ResponseBody body = response.body();
         if (body == null) return null;
         //判断token过期,服务器返回的isLogin是false时token过期，抛出异常，登录接口没有isLogin
-        if (response.headers().get("isLogin") != null) {
-            if (response.headers().get("isLogin").equals("false")) {
-                throw new IllegalStateException("登录过期");
-            }
-        }
+//        if (response.headers().get("isLogin") != null) {
+//            if (response.headers().get("isLogin").equals("false")) {
+//                throw new IllegalStateException("登录过期");
+//            }
+//        }
 
         T data = null;
         Gson gson = new Gson();
@@ -55,10 +55,10 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             Type rawType = ((ParameterizedType) type1).getRawType();
             if (rawType == ServerResult.class) {
                 ServerResult serverResult = gson.fromJson(jsonReader, type1);
-                if (serverResult.getResult() == 1) {
+                if (serverResult.getResult() == 1000) {
                     //返回成功
                     return (T)serverResult;
-                } else if (serverResult.getResult() == 0) {
+                } else if (serverResult.getResult() == 4001) {
                     throw new IllegalStateException(serverResult.getResultDesp());
                 } else if (serverResult.getResult() == -1) {
                     return (T) serverResult;

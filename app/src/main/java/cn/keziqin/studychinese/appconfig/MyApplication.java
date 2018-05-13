@@ -66,7 +66,7 @@ public class MyApplication extends Application {
         filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + instance.getApplicationContext().getPackageName() + "/";
         // 将“12345678”替换成您申请的APPID，申请地址：http://www.xfyun.cn
         // 请勿在“=”与appid之间添加任何空字符或者转义符
-        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5ac78dfe");
+        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5af8601a");
         //1.创建SpeechSynthesizer对象, 第二个参数：本地合成时传InitListener
         mSynthesizer = SpeechSynthesizer.createSynthesizer(this, mTtsInitListner);
         initOkGo();

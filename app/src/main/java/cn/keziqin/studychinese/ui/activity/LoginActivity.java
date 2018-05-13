@@ -18,6 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.keziqin.studychinese.beans.UserBean;
+import cn.keziqin.studychinese.beans.UserResult;
+import cn.keziqin.studychinese.http.beans.ServerResult;
+import cn.keziqin.studychinese.http.callback.JsonCallback;
+import cn.keziqin.studychinese.http.utils.HandleException;
+import cn.keziqin.studychinese.http.utils.Urls;
 import cn.keziqin.studychinese.ui.BaseActivity;
 import cn.keziqin.studychinese.ui.MainActivity;
 
@@ -25,6 +30,7 @@ import cn.keziqin.studychinese.ui.R;
 import cn.keziqin.studychinese.ui.databinding.ActivityLoginBinding;
 import cn.keziqin.studychinese.utils.SharedPreferencesUtil;
 import cn.keziqin.studychinese.utils.ToastUtils;
+import cn.keziqin.studychinese.utils.ZLoadingDialogUtil;
 
 
 public class LoginActivity extends BaseActivity {
@@ -34,6 +40,9 @@ public class LoginActivity extends BaseActivity {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_USER_TOKEN = "token";
     public static final String KEY_IS_LOGIN = "isLogin";
+    public static final String KEY_LEVEL = "level";
+    private static final String COURSE_ID = "courseId";
+    private static final String USER_ID = "userId";
 
     private boolean isRemember;
     @Override
@@ -44,7 +53,12 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initView() {
         if ((Boolean) SharedPreferencesUtil.getParam(this, KEY_IS_LOGIN, false)) {
+            if ((int)SharedPreferencesUtil.getParam(this, COURSE_ID, -1) == -1) {
+                jumpToActivity(SelectLevelActivity.class);
+            } else {
                 jumpToActivity(MainActivity.class);
+            }
+
                 //finish();
         }
         initToolbar();
@@ -95,18 +109,54 @@ public class LoginActivity extends BaseActivity {
 
     //发起登录请求
     private void execLoginTask(){
-        if (mBinding.loginRememberPasswordCb.isChecked()) {
-            SharedPreferencesUtil.setParam(LoginActivity.this, "isRemember", true);
-        } else {
-            SharedPreferencesUtil.setParam(LoginActivity.this, "isRemember", false);
-        }
-        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_USER_NAME, mBinding.loginUsernameEdt.getText().toString());
-        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_PASSWORD, mBinding.loginPasswordEdt.getText().toString());
-        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_USER_TOKEN, "aaa");
-        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_IS_LOGIN, true);
-        //jumpToActivity(MainActivity.class);
-        jumpToActivity(SelectLevelActivity.class);
-        finish();
+        ZLoadingDialogUtil.loadDialog(LoginActivity.this);
+        Map<String, String> params = new HashMap<>();
+        params.put("username", mBinding.loginUsernameEdt.getText().toString());
+        params.put("password", mBinding.loginPasswordEdt.getText().toString());
+        JSONObject json = new JSONObject(params);
+        OkGo.<ServerResult<UserResult>>post(Urls.URL_USER_LOGIN)
+                .tag(this)
+                .upJson(json)
+                .execute(new JsonCallback<ServerResult<UserResult>>() {
+                    @Override
+                    public void onSuccess(Response<ServerResult<UserResult>> response) {
+                        if (mBinding.loginRememberPasswordCb.isChecked()) {
+                            SharedPreferencesUtil.setParam(LoginActivity.this, "isRemember", true);
+                        } else {
+                            SharedPreferencesUtil.setParam(LoginActivity.this, "isRemember", false);
+                        }
+                        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_USER_NAME, mBinding.loginUsernameEdt.getText().toString());
+                        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_PASSWORD, mBinding.loginPasswordEdt.getText().toString());
+                        //SharedPreferencesUtil.setParam(LoginActivity.this, KEY_USER_TOKEN, "aaa");
+                        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_IS_LOGIN, true);
+                        SharedPreferencesUtil.setParam(LoginActivity.this, KEY_LEVEL, response.body().getContent().getUser().getLevel());
+                        SharedPreferencesUtil.setParam(LoginActivity.this, USER_ID, response.body().getContent().getUser().getUserId());
+
+                        UserBean.getInstance().setUserId(response.body().getContent().getUser().getUserId());
+                        UserBean.getInstance().setLevel(response.body().getContent().getUser().getLevel());
+                        UserBean.getInstance().setUsername(response.body().getContent().getUser().getUsername());
+                        UserBean.getInstance().setPassword(response.body().getContent().getUser().getPassword());
+                        //jumpToActivity(MainActivity.class);
+                        ZLoadingDialogUtil.dismissDialog();
+                        jumpToActivity(SelectLevelActivity.class);
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(Response<ServerResult<UserResult>> response) {
+                        super.onError(response);
+                        ZLoadingDialogUtil.dismissDialog();
+                        Throwable exception = response.getException();
+                        if (exception != null)
+                            exception.printStackTrace();
+
+                        //处理其他异常
+                        HandleException.handleException(exception, TAG, LoginActivity.this);
+
+
+                    }
+                });
+
 
 
     }

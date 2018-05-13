@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="course"
+            type="cn.keziqin.studychinese.beans.CourseContent"/>
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,7 +26,7 @@
                     android:layout_alignLeft="@+id/layout_show_zi"
                     android:layout_alignRight="@+id/layout_show_zi"
                     android:gravity="center"
-                    android:text="nǐ"
+                    android:text="@{course.spell}"
                     android:textSize="18dp"/>
                 <RelativeLayout
                     android:id="@+id/layout_show_zi"
@@ -39,7 +45,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:textSize="18dp"
-                        android:text="你好啊"
+                        android:text="@{course.objectName}"
                         android:visibility="invisible"/>
                 </RelativeLayout>
 
@@ -90,7 +96,8 @@
                     android:layout_below="@id/tv_word_explanation_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="false"/>
+                    android:singleLine="false"
+                    android:text="@{course.interpretation}"/>
                 <include
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
@@ -156,7 +163,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/course_zixing_content"
-                    android:singleLine="false"/>
+                    android:singleLine="false"
+                    android:text="@{course.evolutionInterpretation}"/>
 
                 <include
                     android:layout_marginTop="4dp"
@@ -186,12 +194,12 @@
                     android:id="@+id/tv_liju_content_cn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_liju_title"/>
+                    android:layout_below="@id/tv_liju_title" />
                 <TextView
                     android:id="@+id/tv_liju_content_en"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_liju_content_cn"/>
+                    android:layout_below="@id/tv_liju_content_cn" />
 
                 <include
                     android:layout_marginTop="4dp"
@@ -220,7 +228,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_course_grammar_title"
-                    android:lineSpacingMultiplier="1.5"/>
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="@{course.grammatical}"/>
                 <include
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"

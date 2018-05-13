@@ -14,14 +14,28 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SynthesizerListener;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import cn.keziqin.studychinese.appconfig.MyApplication;
+import cn.keziqin.studychinese.beans.CourseContent;
 import cn.keziqin.studychinese.beans.CourseMessageEvent;
+import cn.keziqin.studychinese.beans.GroupBean;
+import cn.keziqin.studychinese.beans.GroupBeanList;
+import cn.keziqin.studychinese.beans.SourceBean;
+import cn.keziqin.studychinese.beans.UserBean;
+import cn.keziqin.studychinese.http.beans.ServerResult;
+import cn.keziqin.studychinese.http.callback.JsonCallback;
+import cn.keziqin.studychinese.http.utils.HandleException;
+import cn.keziqin.studychinese.http.utils.Urls;
 import cn.keziqin.studychinese.ui.BaseFragment;
 import cn.keziqin.studychinese.ui.R;
+import cn.keziqin.studychinese.ui.activity.SelectLevelActivity;
 import cn.keziqin.studychinese.ui.databinding.FragmentCourseBinding;
 import cn.keziqin.studychinese.utils.ConvertScreenUnitUtil;
+import cn.keziqin.studychinese.utils.SharedPreferencesUtil;
 import cn.keziqin.studychinese.utils.ToastUtils;
+import cn.keziqin.studychinese.utils.ZLoadingDialogUtil;
 
 import android.view.ViewGroup.*;
 import android.widget.LinearLayout;
@@ -29,9 +43,19 @@ import android.widget.LinearLayout;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CourseFragment extends BaseFragment {
     private FragmentCourseBinding mBinding;
+    private int currentCount = 0;
+    private int maxCount;
+    private static final String COURSE_ID = "courseId";
+    private String subject;
+    private ArrayList<CourseContent> courseContents = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +67,22 @@ public class CourseFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(CourseMessageEvent messageEvent) {
 //        mText.setText(messageEvent.getMessage());
-        ToastUtils.showToast(this.getActivity(), messageEvent.getMessage());
+        //ToastUtils.showToast(this.getActivity(), messageEvent.getMessage());
+        if (messageEvent.getMessage().equals("学习内容下一个")) {
+            if (currentCount == maxCount - 1) {
+                ToastUtils.showToast(this.getContext(), "This group of courses has been completed~~~");
+            } else {
+                currentCount++;
+                fillingContent(currentCount, courseContents);
+            }
+        } else if (messageEvent.getMessage().equals("学习内容上一个")) {
+            if (currentCount == 0) {
+                ToastUtils.showToast(this.getContext(), "This is the first one~~~");
+            } else {
+                currentCount--;
+                fillingContent(currentCount, courseContents);
+            }
+        }
     }
 
     @Nullable
@@ -61,7 +100,8 @@ public class CourseFragment extends BaseFragment {
 
     private void initView() {
         Glide.with(this).load(R.drawable.zhou).into(mBinding.ivGifBishun);
-        setContent();
+        //setContent();
+        setContentFromHttp();
         startSpeaking();
 //        String url = "http://img.soogif.com/N31KglHjux1DB7b3ko7Jok52gjh1dUA6.gif";
 //        Glide.with(this).load(url).into(mBinding.ivGifBishun);
@@ -81,6 +121,112 @@ public class CourseFragment extends BaseFragment {
 //
 //            }
 //        });
+    }
+
+    private void setContentFromHttp() {
+        ZLoadingDialogUtil.loadDialog(this.getContext());
+        Map<String, Object> params = new HashMap<>();
+        //SharedPreferencesUtil.getParam(this.getContext(), COURSE_ID, 0)
+        params.put("groupId", 1);
+        JSONObject json = new JSONObject(params);
+        OkGo.<ServerResult<ArrayList<CourseContent>>>post(Urls.URL_COURSE_CONTENT)
+                .tag(this)
+                .upJson(json)
+                .execute(new JsonCallback<ServerResult<ArrayList<CourseContent>>>() {
+                    @Override
+                    public void onSuccess(Response<ServerResult<ArrayList<CourseContent>>> response) {
+                        ZLoadingDialogUtil.dismissDialog();
+
+                        currentCount = 0;
+                        maxCount = response.body().getContent().size();
+                        courseContents = response.body().getContent();
+                        fillingContent(currentCount, response.body().getContent());
+                        //mBinding.setCourse(response.body().getContent().get(2));
+                    }
+                    public void onError(Response<ServerResult<ArrayList<CourseContent>>> response) {
+                        super.onError(response);
+                        ZLoadingDialogUtil.dismissDialog();
+                        Throwable exception = response.getException();
+                        if (exception != null)
+                            exception.printStackTrace();
+
+                        //处理其他异常
+                        HandleException.handleException(exception, TAG, CourseFragment.this.getContext());
+
+                    }
+                });
+    }
+    //用来动态修改课程里的内容
+    private void fillingContent(int count, ArrayList<CourseContent> content) {
+        if (content.get(count).getType() == 1) {
+            mBinding.courseLayout1.setVisibility(View.VISIBLE);
+            mBinding.courseLayout2.setVisibility(View.VISIBLE);
+            mBinding.courseLayout3.setVisibility(View.VISIBLE);
+            mBinding.courseLayout4.setVisibility(View.VISIBLE);
+
+            mBinding.courseLayout5.setVisibility(View.GONE);
+            mBinding.courseLayout6.setVisibility(View.GONE);
+
+            mBinding.ivZiStructure.setVisibility(View.VISIBLE);
+            mBinding.tvCourseJuzi.setVisibility(View.GONE);
+            //显示字词结构
+            Glide.with(this).load(content.get(count).getStrcutImg()).into(mBinding.ivZiStructure);
+            //显示笔顺
+            mBinding.ivGifBishun.setVisibility(View.VISIBLE);
+            Glide.with(this).load(content.get(count).getStrokesImg()).into(mBinding.ivGifBishun);
+            //显示图片
+            Glide.with(this).load(content.get(count).getImg()).into(mBinding.ivCoursePicture);
+            //字形演变
+            mBinding.courseZixingContent.removeAllViews();
+            for (int i = 0; i < content.get(count).getSourceList().size(); i++) {
+                ImageView imageView = new ImageView(this.getActivity());
+                LinearLayout.LayoutParams iv_params = new LinearLayout.LayoutParams(ConvertScreenUnitUtil.dip2px(this.getContext(), 80), ConvertScreenUnitUtil.dip2px(this.getContext(), 80));
+                iv_params.leftMargin = ConvertScreenUnitUtil.dip2px(this.getContext(), 16);
+                imageView.setLayoutParams(iv_params);  //设置图片宽高
+                Glide.with(this).load(content.get(count).getSourceList().get(i).getSourceImgSrc()).into(imageView); //图片资源
+                mBinding.courseZixingContent.addView(imageView); //动态添加图片
+            }
+
+        } else if (content.get(count).getType() == 2) {
+            mBinding.courseLayout1.setVisibility(View.VISIBLE);
+            mBinding.courseLayout2.setVisibility(View.VISIBLE);
+            mBinding.courseLayout3.setVisibility(View.VISIBLE);
+            mBinding.courseLayout5.setVisibility(View.VISIBLE);
+
+            mBinding.courseLayout4.setVisibility(View.GONE);
+            mBinding.courseLayout6.setVisibility(View.GONE);
+
+            mBinding.ivZiStructure.setVisibility(View.VISIBLE);
+            mBinding.tvCourseJuzi.setVisibility(View.GONE);
+            //显示字词结构
+            Glide.with(this).load(content.get(count).getStrcutImg()).into(mBinding.ivZiStructure);
+            //不显示笔顺
+            mBinding.ivGifBishun.setVisibility(View.GONE);
+            //显示图片
+            Glide.with(this).load(content.get(count).getImg()).into(mBinding.ivCoursePicture);
+            //中英文例句
+            mBinding.tvLijuContentCn.setText(Html.fromHtml(content.get(count).getSentenceList().get(0).getSentence()));
+            mBinding.tvLijuContentEn.setText(Html.fromHtml(content.get(count).getSentenceList().get(0).getInterpretation()));
+        } else if (content.get(count).getType() == 3) {
+            mBinding.courseLayout1.setVisibility(View.VISIBLE);
+            mBinding.courseLayout2.setVisibility(View.VISIBLE);
+            mBinding.courseLayout6.setVisibility(View.VISIBLE);
+
+            mBinding.courseLayout3.setVisibility(View.GONE);
+            mBinding.courseLayout4.setVisibility(View.GONE);
+            mBinding.courseLayout5.setVisibility(View.GONE);
+
+            mBinding.ivZiStructure.setVisibility(View.GONE);
+            mBinding.tvCourseJuzi.setVisibility(View.VISIBLE);
+
+            //不显示笔顺
+            mBinding.ivGifBishun.setVisibility(View.GONE);
+            //句子语法分析
+
+        }
+        mBinding.setCourse(content.get(count));
+        //更新读音
+        subject = content.get(count).getObjectName();
     }
 
     private void setContent() {
@@ -121,7 +267,8 @@ public class CourseFragment extends BaseFragment {
         mBinding.ivSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyApplication.getmSynthesizer().startSpeaking("你", listener);
+                if (subject != null)
+                    MyApplication.getmSynthesizer().startSpeaking(subject, listener);
             }
         });
     }

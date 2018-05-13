@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cn.keziqin.studychinese.beans.UserBean;
 import cn.keziqin.studychinese.ui.BaseFragment;
 import cn.keziqin.studychinese.ui.R;
 import cn.keziqin.studychinese.ui.activity.LoginActivity;
@@ -39,6 +40,7 @@ public class MyFragment extends BaseFragment {
             public void onClick(View view) {
                 ToastUtils.showToast(view.getContext(), "LogOut!");
                 SharedPreferencesUtil.setParam(view.getContext(), KEY_IS_LOGIN, false);
+                UserBean.clearUserInfo(view.getContext());
                 Intent intent = new Intent(view.getContext(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
