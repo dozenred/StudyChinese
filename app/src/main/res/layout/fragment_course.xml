@@ -43,8 +43,9 @@
                         android:id="@+id/tv_course_juzi"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
+                        android:paddingRight="8dp"
                         android:gravity="center"
-                        android:textSize="18dp"
+                        android:textSize="24dp"
                         android:text="@{course.objectName}"
                         android:visibility="invisible"/>
                 </RelativeLayout>
@@ -97,7 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="false"
-                    android:text="@{course.interpretation}"/>
+                    />
                 <include
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
@@ -229,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_course_grammar_title"
                     android:lineSpacingMultiplier="1.5"
-                    android:text="@{course.grammatical}"/>
+                    />
                 <include
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"

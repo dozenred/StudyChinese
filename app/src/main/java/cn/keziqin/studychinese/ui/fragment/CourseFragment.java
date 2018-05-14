@@ -174,6 +174,8 @@ public class CourseFragment extends BaseFragment {
             //显示笔顺
             mBinding.ivGifBishun.setVisibility(View.VISIBLE);
             Glide.with(this).load(content.get(count).getStrokesImg()).into(mBinding.ivGifBishun);
+            //显示解释
+            mBinding.tvWordExplanationContent.setText(content.get(count).getInterpretation().replace("\\n", "\n"));
             //显示图片
             Glide.with(this).load(content.get(count).getImg()).into(mBinding.ivCoursePicture);
             //字形演变
@@ -202,6 +204,8 @@ public class CourseFragment extends BaseFragment {
             Glide.with(this).load(content.get(count).getStrcutImg()).into(mBinding.ivZiStructure);
             //不显示笔顺
             mBinding.ivGifBishun.setVisibility(View.GONE);
+            //显示解释
+            mBinding.tvWordExplanationContent.setText(content.get(count).getInterpretation().replace("\\n", "\n"));
             //显示图片
             Glide.with(this).load(content.get(count).getImg()).into(mBinding.ivCoursePicture);
             //中英文例句
@@ -221,7 +225,10 @@ public class CourseFragment extends BaseFragment {
 
             //不显示笔顺
             mBinding.ivGifBishun.setVisibility(View.GONE);
+            //显示解释
+            mBinding.tvWordExplanationContent.setText(content.get(count).getInterpretation().replace("\\n", "\n"));
             //句子语法分析
+            mBinding.tvCourseGrammarContent.setText(content.get(count).getGrammatical().replace("\\n", "\n"));
 
         }
         mBinding.setCourse(content.get(count));

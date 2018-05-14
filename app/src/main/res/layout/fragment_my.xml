@@ -17,10 +17,11 @@
                 android:text="Your Account:"
                 android:textSize="14dp"/>
             <TextView
+                android:id="@+id/tv_my_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="zhuzhuzhu"
+
                 android:textSize="14dp"/>
         </RelativeLayout>
 
@@ -44,10 +45,11 @@
                 android:text="Current level:"
                 android:textSize="14dp"/>
             <TextView
+                android:id="@+id/tv_my_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="1-1"
+
                 android:textSize="14dp"/>
         </RelativeLayout>
 

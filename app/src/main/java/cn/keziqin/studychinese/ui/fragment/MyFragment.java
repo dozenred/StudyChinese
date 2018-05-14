@@ -20,6 +20,11 @@ import cn.keziqin.studychinese.utils.ToastUtils;
 public class MyFragment extends BaseFragment {
     private FragmentMyBinding mBinding;
     public static final String KEY_IS_LOGIN = "isLogin";
+    public static final String KEY_USER_NAME = "username";
+    public static final String KEY_PASSWORD = "password";
+    public static final String KEY_LEVEL = "level";
+    private static final String COURSE_ID = "courseId";
+    private static final String USER_ID = "userId";
 
     @Nullable
     @Override
@@ -52,5 +57,9 @@ public class MyFragment extends BaseFragment {
                 jumpToActivity(SelectLevelActivity.class);
             }
         });
+
+        mBinding.tvMyName.setText((String)SharedPreferencesUtil.getParam(this.getContext(), KEY_USER_NAME, "admin"));
+        mBinding.tvMyLevel.setText(String.valueOf(SharedPreferencesUtil.getParam(this.getContext(), KEY_LEVEL, 1-1)));
+
     }
 }
